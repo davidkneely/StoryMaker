@@ -49,18 +49,18 @@ public class StoryMaker {
 	public static void main(String[] args) {
 
     initWordBank();
-
     generateRandomStoryElements();
-
     printTitle(title);
     printStory(character, location, plotLine, antagnoist, conflict, prop);
-
     int numberOfSentences = 15;
     printRandomSentences(numberOfSentences);
 
-
   }
 
+  /**
+   * Prints random sentences.
+   * @param numberOfSentences The number of times to print a sentence.
+   */
   private static void printRandomSentences(int numberOfSentences) {
     for (int i = 0; i < numberOfSentences; i++) {
       generateRandomStoryElements();
@@ -68,6 +68,9 @@ public class StoryMaker {
     }
   }
 
+  /**
+   * Generates random story elements from word lists.
+   */
   private static void generateRandomStoryElements() {
     title = getRandomElementFromList(props);
     character = getRandomElementFromList(characterNames);
@@ -82,6 +85,11 @@ public class StoryMaker {
     adjective = getRandomElementFromList(adjectives);
   }
 
+  /**
+   * Capitalizes first letter of a word.
+   * @param inputString The word to be capitalized.
+   * @return
+   */
   private static String capitalizeFirstLetter(String inputString){
     inputString = inputString.substring(0, 1).toUpperCase() + inputString.substring(1);
     return inputString;
