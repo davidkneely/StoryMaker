@@ -30,6 +30,18 @@ public class StoryMaker {
   static ArrayList<String> tenses;
   static ArrayList<String> pointsOfView;
 
+  static String title;
+  static String character;
+  static String plotLine;
+  static String antagnoist;
+  static String conflict;
+  static String prop;
+  static String location;
+  static String verb;
+  static String noun;
+  static String adverb;
+  static String adjective;
+
 	/**
 	 * Creates story procedurally.
 	 * @param args The arguments. Not implemented.
@@ -38,18 +50,25 @@ public class StoryMaker {
 
     initWordBank();
 
-    String title;
-    String character;
-    String plotLine;
-    String antagnoist;
-    String conflict;
-    String prop;
-    String location;
-    String verb;
-    String noun;
-    String adverb;
-    String adjective;
+    generateRandomStoryElements();
 
+    printTitle(title);
+    printStory(character, location, plotLine, antagnoist, conflict, prop);
+
+    int numberOfSentences = 15;
+    printRandomSentences(numberOfSentences);
+
+
+  }
+
+  private static void printRandomSentences(int numberOfSentences) {
+    for (int i = 0; i < numberOfSentences; i++) {
+      generateRandomStoryElements();
+      printSentence(noun, verb, adverb, adjective);
+    }
+  }
+
+  private static void generateRandomStoryElements() {
     title = getRandomElementFromList(props);
     character = getRandomElementFromList(characterNames);
     plotLine = getRandomElementFromList(plotLines);
@@ -61,10 +80,6 @@ public class StoryMaker {
     noun = getRandomElementFromList(nouns);
     adverb = getRandomElementFromList(adverbs);
     adjective = getRandomElementFromList(adjectives);
-
-    printTitle(title);
-    printStory(character, location, plotLine, antagnoist, conflict, prop);
-    printSentence(noun, verb, adverb, adjective);
   }
 
   private static String capitalizeFirstLetter(String inputString){
@@ -149,6 +164,10 @@ public class StoryMaker {
 				conflict + ".");
 	}
 
+  /**
+   * Prints the title of the story.
+   * @param title The title.
+   */
 	private static void printTitle(String title) {
 
     title = capitalizeFirstLetter(title);
@@ -159,6 +178,13 @@ public class StoryMaker {
 					PROJECT_VERSION + "\n");
 	}
 
+  /**
+   * Prints a sentence.
+   * @param noun The noun.
+   * @param verb The verb.
+   * @param adverb The adverb.
+   * @param adjective The adjective.
+   */
   private static void printSentence(String noun, String verb, String adverb, String adjective) {
     adjective = capitalizeFirstLetter(adjective);
     System.out.println(adjective + " " + noun + " " + adverb + " " + verb + " " + adjective + " " + noun + ". ");
@@ -173,6 +199,7 @@ public class StoryMaker {
 
 /*
  * TODOS:
+ * Chain output of story to grammer check in Microsoft Word to fix any tense problems?
  * Research how to list out compound words as entries.
  * Specify genders for Characters to write out correct pronouns.
  * Determine how to link concepts of actions with subjects.
