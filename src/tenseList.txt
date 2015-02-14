@@ -1,0 +1,12 @@
+present
+past
+future
+present perfect
+past perfect
+future perfect
+present progressive
+past progressive
+future progressive
+present perfect progressive
+past perfect progressive
+future perfect progressive

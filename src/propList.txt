@@ -1,0 +1,32 @@
+coffee Cup
+car
+plane
+bicycle
+bystander
+helicopter
+lighter
+gun
+knife
+stool
+computer
+book
+bible
+hook
+bottle
+keyboard
+stapler
+headphones
+club
+waterBottle
+can of mace
+mouse
+pen
+brain
+trash bag
+pistol
+can of spray paint
+feather duster
+can of tomato soup
+hammer
+chisel
+pick axe

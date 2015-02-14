@@ -1,4 +1,8 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Creates story procedurally.
@@ -11,26 +15,69 @@ public class StoryMaker {
 	private static String PROJECT_NAME = "StoryMaker";
 	private static double PROJECT_VERSION = 0.01;
 
+  static ArrayList<String> nouns;
+  static ArrayList<String> verbs;
+  static ArrayList<String> adverbs;
+  static ArrayList<String> adjectives;
+  static ArrayList<String> props;
+  static ArrayList<String> characterNames;
+  static ArrayList<String> locations;
+  static ArrayList<String> characters;
+  static ArrayList<String> plotLines;
+  static ArrayList<String> antagonists;
+  static ArrayList<String> conflicts;
+  static ArrayList<String> tenses;
+  static ArrayList<String> pointsOfView;
+
 	/**
 	 * Creates story procedurally.
 	 * @param args The arguments. Not implemented.
 	 */
 	public static void main(String[] args) {
-		
-		String title = randomEnum(Props.class).name();
-		String character = randomEnum(CharacterNames.class).name();
-		String location = randomEnum(Locations.class).name();
-		String plotLine = randomEnum(PlotLines.class).name();
-		String antagnoist = randomEnum(Antagonists.class).name();
-		String conflict = randomEnum(Conflicts.class).name();
-		String prop = randomEnum(Props.class).name();
-		
-		printTitle(title);
-		printStory(character, location, plotLine, antagnoist, conflict, prop);
+//	printTitle(title);
+//	printStory(character, location, plotLine, antagnoist, conflict, prop);
+    initWordBank();
 
-	}
+  }
 
-	private static void printStory(String character, String location,
+  /**
+   * Initializes words from text files for use in the story.
+   */
+  private static void initWordBank() {
+    nouns = importWordList("src/nounList.txt");
+    verbs = importWordList("src/verbList.txt");
+    adverbs = importWordList("src/adverbList.txt");
+    adjectives = importWordList("src/adjectiveList.txt");
+    props = importWordList("src/propList.txt");
+    characterNames = importWordList("src/characterNameList.txt");
+    locations = importWordList("src/locationList.txt");
+    characters = importWordList("src/characterList.txt");
+    plotLines = importWordList("src/plotLineList.txt");
+    antagonists = importWordList("src/antagonistList.txt");
+    conflicts = importWordList("src/conflictList.txt");
+    tenses = importWordList("src/tenseList.txt");
+    pointsOfView = importWordList("src/pointOfViewList.txt");
+  }
+
+  private static ArrayList<String> importWordList(String inputFileName) {
+
+    ArrayList<String> list = null;
+    try {
+      Scanner s = new Scanner(new File(inputFileName));
+      list = new ArrayList<String>();
+      while (s.hasNext()){
+        list.add(s.next());
+      }
+      s.close();
+    }
+    catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
+
+    return list;
+  }
+
+  private static void printStory(String character, String location,
 			String plotLine, String antagnoist, String conflict, String prop) {
 
 		System.out.println(character + " was in " + location + ". " + 
@@ -54,219 +101,24 @@ public class StoryMaker {
 	 * @param clazz The Enumeration.
 	 * @return The random value of the Enumeration.
 	 */
-	public static <T extends Enum<?>> T randomEnum(Class<T> clazz){
+	private static <T extends Enum<?>> T randomEnum(Class<T> clazz){
         int x = random.nextInt(clazz.getEnumConstants().length);
         return clazz.getEnumConstants()[x];
     }
 	private static final SecureRandom random = new SecureRandom();
-	
-	private enum Characters {
-		Protagonist,
-		Antagonist,
-		Support,
-		Extra
-	}
-	private enum CharacterNames {
-		David,
-		Jim,
-		Jason,
-		Carol,
-		Andy,
-		Watson,
-		Sergei,
-		Jill,
-		Wendy,
-		Jenny,
-		Anna,
-		Jessica,
-		Henri,
-		Sam,
-		// Begin Scandinavian names
-		Henrik, 
-		Alexander,
-		Aksel, 
-		Alarik, 
-		Albert, 
-		Algot, 
-		Alicia, 
-		Alvis, 
-		Amalia, 
-		Amma, 
-		Amund, 
-		Anders, 
-		Andor, 
-		Anker,
-		Annette, 
-		Anneliese, 
-		Anfrid, 
-		Arna, 
-		Arnbjorn, 
-		Arne, 
-		Asa, 
-		Astrid, 
-		Balder, 
-		Barbro, 
-		Barend, 
-		Beatrix, 
-		Benedikt, 
-		Bernt, 
-		Bente, 
-		Bertil, 
-		Birgit, 
-		Bo, 
-		Bjorn, 
-		Broder, 
-		Carl, 
-		Carina, 
-		Carole, 
-		Caroline, 
-		Caspar, 
-		Cecilia, 
-		Celia, 
-		Charlotta, 
-		Christa, 
-		Claus, 
-		Cornelia, 
-		Dag, 
-		Dagmar, 
-		Dagna, 
-		Dania, 
-		Diedreik, 
-		Disa, 
-		Dorothea, 
-		Ebba, 
-		Edda, 
-		Edith, 
-		Yvonne, 
-		Edmond, 
-		Holly,
-		Fred,
-		Frank,
-		Stan,
-		Peggy,
-		Don,
-		Rodger,
-		Burt
-	}
-	private enum Locations {
-		Hawaii,
-		SanFrancisco,
-		London,
-		NewYork,
-		Japan,
-		Iceland,
-		Kaimuki,
-		Moiliili,
-		Manoa,
-		Haleiwa,
-		NorthShore,
-		Kahala,
-		AlaMoana,
-		TheBar,
-		TheBathroom,
-		TheKitchen,
-		TheGarage,
-		TheStudio,
-		TheBakery,
-		Zippys,
-		HataRestaurant,
-		Gyukaku,
-		Waianae,
-		Wahiwa,
-		Waikiki,
-		NiuValley,
-		Palolo,
-		Jail,
-		School,
-		TheSushiBar,
-		GenkiSushi,
-		TheGlassBlowingStudio,
-		TheDoctorsOffice,
-		TheMajorsOffice,
-		ThePrincipalsOffice,
-		DeepUnderWater,
-		UpInTheAir,
-		TheDumpster,
-		BehindTheSevenEleven,
-		TheBottomOfThePool
-	}
-	private enum PlotLines {
-		ManInHole,
-		BoyMeetsGirl,
-		FromBadToWorse,
-		WhichWayIsUp,
-		CreationStory,
-		OldTestament,
-		NewTestament,
-		Cinderalla
-	}
-	private enum Antagonists {
-		SelfEsteem,
-		Government,
-		Work,
-		Life,
-		Love,
-		Health,
-		Weather,
-		Money,
-		Power,
-		Lover,
-		Boss
-	}
-	private enum Conflicts {
-		LostJob,
-		Marooned,
-		Ostracized,
-		Immobailized,
-		Diseased,
-		Punished,
-		Intoxicated,
-		MentalHealth,
-		HitByABus
-	}
-	private enum Props {
-		CoffeeCup,
-		Car,
-		Plane,
-		Bicycle,
-		Bystander,
-		Helicopter,
-		Lighter,
-		Gun,
-		Knife,
-		Stool,
-		Computer,
-		Book,
-		Bible,
-		Hook,
-		Bottle,
-		Keyboard,
-		Stapler,
-		Headphones,
-		Club,
-		WaterBottle,
-		CanOfMace,
-		Mouse,
-		Pen,
-		Brain,
-		TrashBag,
-		Pistol,
-		CanOfSprayPaint,
-		FeatherDuster,
-		CanOfTomatoSoup,
-		Hammer,
-		Chisel,
-		PickAxe
-	}
 
 }
 
+// Create list of sentence structures.
+
+// Subject verb object.
+// Subject adverb verb adjective noun.
+
 /*
  * TODOS:
+ * Research how to list out compound words as entries.
  * Specify genders for Characters to write out correct pronouns.
  * Determine how to link concepts of actions with subjects.
- * Enumerate verbs.
- * Enumerate nouns.
- * Enumerate adjectives.
- * Enumerate adverbs.
+ * Create weighing system for each word that is chosen.
+ * There should be a scoring system to tell where they story is going based on the variables that are chosen.
  */
