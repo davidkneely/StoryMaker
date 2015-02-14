@@ -1,7 +1,10 @@
+import java.security.SecureRandom;
+
 /**
  * Creates stories procedurally.
  * @author David Neely
- *
+ * Cited Sources: PlotLines come from Kurt Vonnegut's "Shapes of Stories."
+ * http://mayaeilam.com/2012/01/01/the-shapes-of-stories-a-kurt-vonnegut-infographic/
  */
 public class StoryMaker {
 
@@ -10,16 +13,23 @@ public class StoryMaker {
 	 * @param args The arguments. Not implemented.
 	 */
 	public static void main(String[] args) {
-		System.out.println("Starting StoryMaker.");
-		// select random element from Characters
-		// select random element from CharacterNames
-		// select random element from Locations
-		// select random element from PlotLines
-		// select random element from Antagnoists
-		// select random element from Conflicts
-		// select random element from Props
+
+		System.out.println("Random from Characters: " + randomEnum(Characters.class));
+		System.out.println("Random from CharacterNames: " + randomEnum(CharacterNames.class));
+		System.out.println("Random from Locations: " + randomEnum(Locations.class));
+		System.out.println("Random from PlotLines: " + randomEnum(PlotLines.class));
+		System.out.println("Random from Antagonists: " + randomEnum(Antagonists.class));
+		System.out.println("Random from Conflicts: " + randomEnum(Conflicts.class));
+		System.out.println("Random from Props: " + randomEnum(Props.class));
+
 		// prints out the random story
 	}
+	
+	public static <T extends Enum<?>> T randomEnum(Class<T> clazz){
+        int x = random.nextInt(clazz.getEnumConstants().length);
+        return clazz.getEnumConstants()[x];
+    }
+	private static final SecureRandom random = new SecureRandom();
 	
 	private enum Characters {
 		Protagonist,
@@ -27,7 +37,6 @@ public class StoryMaker {
 		Support,
 		Extra
 	}
-	
 	private enum CharacterNames {
 		David,
 		Jim,
@@ -53,7 +62,6 @@ public class StoryMaker {
 		Rodger,
 		Burt
 	}
-	
 	private enum Locations {
 		Home,
 		Hawaii,
@@ -63,7 +71,6 @@ public class StoryMaker {
 		Japan,
 		Iceland
 	}
-	
 	private enum PlotLines {
 		ManInHole,
 		BoyMeetsGirl,
@@ -74,8 +81,7 @@ public class StoryMaker {
 		NewTestament,
 		Cinderalla
 	}
-	
-	public enum Antagnoists {
+	public enum Antagonists {
 		SelfEsteem,
 		Government,
 		Work,
@@ -88,7 +94,6 @@ public class StoryMaker {
 		Lover,
 		Boss
 	}
-	
 	public enum Conflicts {
 		LostJob,
 		Marooned,
@@ -100,7 +105,6 @@ public class StoryMaker {
 		MentalHealth,
 		HitByABus
 	}
-	
 	public enum Props {
 		CoffeeCup,
 		Car,
@@ -115,7 +119,6 @@ public class StoryMaker {
 		Computer,
 		Book
 	}
-	
 //	public enum Morals {
 //		
 //	}
