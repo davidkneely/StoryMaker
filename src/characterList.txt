@@ -1,4 +1,4 @@
-Protagonist
-Antagonist
-Support
-Extra
+protagonist
+antagonist
+support
+extra

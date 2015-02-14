@@ -1,9 +1,9 @@
-LostJob
-Marooned
-Ostracized
-Immobailized
-Diseased
-Punished
-Intoxicated
-MentalHealth
-HitByABus
+lost job
+marooned
+ostracized
+immobalized
+diseased
+punished
+intoxicated
+mental health
+hit by a bus

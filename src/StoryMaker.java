@@ -45,17 +45,31 @@ public class StoryMaker {
     String conflict;
     String prop;
     String location;
+    String verb;
+    String noun;
+    String adverb;
+    String adjective;
 
     title = getRandomElementFromList(props);
-    character = getRandomElementFromList(characters);
+    character = getRandomElementFromList(characterNames);
     plotLine = getRandomElementFromList(plotLines);
     antagnoist = getRandomElementFromList(antagonists);
     conflict = getRandomElementFromList(conflicts);
     prop = getRandomElementFromList(props);
     location = getRandomElementFromList(locations);
+    verb = getRandomElementFromList(verbs);
+    noun = getRandomElementFromList(nouns);
+    adverb = getRandomElementFromList(adverbs);
+    adjective = getRandomElementFromList(adjectives);
 
     printTitle(title);
     printStory(character, location, plotLine, antagnoist, conflict, prop);
+    printSentence(noun, verb, adverb, adjective);
+  }
+
+  private static String capitalizeFirstLetter(String inputString){
+    inputString = inputString.substring(0, 1).toUpperCase() + inputString.substring(1);
+    return inputString;
   }
 
   /**
@@ -98,12 +112,12 @@ public class StoryMaker {
    */
   private static ArrayList<String> importWordList(String inputFileName) {
 
-    ArrayList<String> list = null;
+    ArrayList<String> returnList = null;
     try {
       Scanner s = new Scanner(new File(inputFileName)).useDelimiter("\n");
-      list = new ArrayList<String>();
+      returnList = new ArrayList<String>();
       while (s.hasNext()) {
-        list.add(s.next());
+        returnList.add(s.next());
       }
       s.close();
     }
@@ -111,13 +125,23 @@ public class StoryMaker {
       e.printStackTrace();
     }
 
-    return list;
+    return returnList;
   }
 
+  /**
+   * Prints out the story.
+   * @param character The main character.
+   * @param location The location.
+   * @param plotLine The plot line.
+   * @param antagnoist The bad guy.
+   * @param conflict The conflict.
+   * @param prop The prop.
+   */
   private static void printStory(String character, String location,
                                  String plotLine, String antagnoist,
                                  String conflict, String prop) {
 
+    character = capitalizeFirstLetter(character);
 		System.out.println(character + " was in " + location + ". " + 
 				antagnoist + " was a " + prop + ". " + character + 
 				" was stuck in a classic game of " + 
@@ -127,12 +151,18 @@ public class StoryMaker {
 
 	private static void printTitle(String title) {
 
+    title = capitalizeFirstLetter(title);
 		String formattedTitle = "The " + title;
 		formattedTitle = "'" + formattedTitle + "'";
 		System.out.println(formattedTitle + " \nby " + 
 					PROJECT_NAME + " version " + 
 					PROJECT_VERSION + "\n");
 	}
+
+  private static void printSentence(String noun, String verb, String adverb, String adjective) {
+    adjective = capitalizeFirstLetter(adjective);
+    System.out.println(adjective + " " + noun + " " + adverb + " " + verb + " " + adjective + " " + noun + ". ");
+  }
 
 }
 
