@@ -25,21 +25,28 @@ public class StoryMaker {
 		String conflict = randomEnum(Conflicts.class).name();
 		String prop = randomEnum(Props.class).name();
 		
-		// Prints out the title
-		String formattedTitle = "The " + title;
-		//formattedTitle = formattedTitle.toUpperCase();
-		formattedTitle = "'" + formattedTitle + "'";
-		System.out.println(formattedTitle + " \nby " + 
-					PROJECT_NAME + " version " + 
-					PROJECT_VERSION + "\n");
+		printTitle(title);
+		printStory(character, location, plotLine, antagnoist, conflict, prop);
 
-		// Prints out the story
+	}
+
+	private static void printStory(String character, String location,
+			String plotLine, String antagnoist, String conflict, String prop) {
+
 		System.out.println(character + " was in " + location + ". " + 
 				antagnoist + " was a " + prop + ". " + character + 
 				" was stuck in a classic game of " + 
 				plotLine + ". The only way to win was to get " + 
 				conflict + ".");
+	}
 
+	private static void printTitle(String title) {
+
+		String formattedTitle = "The " + title;
+		formattedTitle = "'" + formattedTitle + "'";
+		System.out.println(formattedTitle + " \nby " + 
+					PROJECT_NAME + " version " + 
+					PROJECT_VERSION + "\n");
 	}
 	
 	/**
