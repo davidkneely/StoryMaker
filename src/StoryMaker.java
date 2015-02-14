@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -34,10 +35,40 @@ public class StoryMaker {
 	 * @param args The arguments. Not implemented.
 	 */
 	public static void main(String[] args) {
-//	printTitle(title);
-//	printStory(character, location, plotLine, antagnoist, conflict, prop);
+
     initWordBank();
 
+    String title;
+    String character;
+    String plotLine;
+    String antagnoist;
+    String conflict;
+    String prop;
+    String location;
+
+    title = getRandomElementFromList(props);
+    character = getRandomElementFromList(characters);
+    plotLine = getRandomElementFromList(plotLines);
+    antagnoist = getRandomElementFromList(antagonists);
+    conflict = getRandomElementFromList(conflicts);
+    prop = getRandomElementFromList(props);
+    location = getRandomElementFromList(locations);
+
+    printTitle(title);
+    printStory(character, location, plotLine, antagnoist, conflict, prop);
+  }
+
+  /**
+   * Gets a random element from ArrayList.
+   * @param inputArrayList The input ArrayList.
+   * @return The random element in ArrayList.
+   */
+  private static String getRandomElementFromList(ArrayList<String> inputArrayList) {
+    String returnString;
+    Random randomGenerator = new Random();
+    int index = randomGenerator.nextInt(inputArrayList.size());
+    returnString = inputArrayList.get(index);
+    return returnString;
   }
 
   /**
@@ -57,15 +88,21 @@ public class StoryMaker {
     conflicts = importWordList("src/conflictList.txt");
     tenses = importWordList("src/tenseList.txt");
     pointsOfView = importWordList("src/pointOfViewList.txt");
+
   }
 
+  /**
+   * Imports the word list.
+   * @param inputFileName The name of the file that has the list of words.
+   * @return An ArrayList of the imported words.
+   */
   private static ArrayList<String> importWordList(String inputFileName) {
 
     ArrayList<String> list = null;
     try {
-      Scanner s = new Scanner(new File(inputFileName));
+      Scanner s = new Scanner(new File(inputFileName)).useDelimiter("\n");
       list = new ArrayList<String>();
-      while (s.hasNext()){
+      while (s.hasNext()) {
         list.add(s.next());
       }
       s.close();
@@ -78,7 +115,8 @@ public class StoryMaker {
   }
 
   private static void printStory(String character, String location,
-			String plotLine, String antagnoist, String conflict, String prop) {
+                                 String plotLine, String antagnoist,
+                                 String conflict, String prop) {
 
 		System.out.println(character + " was in " + location + ". " + 
 				antagnoist + " was a " + prop + ". " + character + 
@@ -95,17 +133,6 @@ public class StoryMaker {
 					PROJECT_NAME + " version " + 
 					PROJECT_VERSION + "\n");
 	}
-	
-	/**
-	 * Picks random value from Enumeration.
-	 * @param clazz The Enumeration.
-	 * @return The random value of the Enumeration.
-	 */
-	private static <T extends Enum<?>> T randomEnum(Class<T> clazz){
-        int x = random.nextInt(clazz.getEnumConstants().length);
-        return clazz.getEnumConstants()[x];
-    }
-	private static final SecureRandom random = new SecureRandom();
 
 }
 
