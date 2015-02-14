@@ -7,32 +7,38 @@ import java.security.SecureRandom;
  * http://mayaeilam.com/2012/01/01/the-shapes-of-stories-a-kurt-vonnegut-infographic/
  */
 public class StoryMaker {
+	
+	private static String PROJECT_NAME = "StoryMaker";
+	private static double PROJECT_VERSION = 0.01;
 
 	/**
 	 * Creates story procedurally.
 	 * @param args The arguments. Not implemented.
 	 */
 	public static void main(String[] args) {
-
-//		System.out.println("Random from Characters: " + randomEnum(Characters.class));
-//		System.out.println("Random from CharacterNames: " + randomEnum(CharacterNames.class));
-//		System.out.println("Random from Locations: " + randomEnum(Locations.class));
-//		System.out.println("Random from PlotLines: " + randomEnum(PlotLines.class));
-//		System.out.println("Random from Antagonists: " + randomEnum(Antagonists.class));
-//		System.out.println("Random from Conflicts: " + randomEnum(Conflicts.class));
-//		System.out.println("Random from Props: " + randomEnum(Props.class));
 		
+		String title = randomEnum(Props.class).name();
 		String character = randomEnum(CharacterNames.class).name();
 		String location = randomEnum(Locations.class).name();
 		String plotLine = randomEnum(PlotLines.class).name();
 		String antagnoist = randomEnum(Antagonists.class).name();
 		String conflict = randomEnum(Conflicts.class).name();
 		String prop = randomEnum(Props.class).name();
+		
+		// Prints out the title
+		String formattedTitle = "The " + title;
+		//formattedTitle = formattedTitle.toUpperCase();
+		formattedTitle = "'" + formattedTitle + "'";
+		System.out.println(formattedTitle + " \nby " + 
+					PROJECT_NAME + " version " + 
+					PROJECT_VERSION + "\n");
 
-		// Prints out the random story
+		// Prints out the story
 		System.out.println(character + " was in " + location + ". " + 
-				antagnoist + " had a " + prop + ". " + character + " was stuck in a classic game of " + 
-				plotLine + ". The only way to win was to get " + conflict + ".");
+				antagnoist + " was a " + prop + ". " + character + 
+				" was stuck in a classic game of " + 
+				plotLine + ". The only way to win was to get " + 
+				conflict + ".");
 
 	}
 	
@@ -68,7 +74,64 @@ public class StoryMaker {
 		Jessica,
 		Henri,
 		Sam,
-		Henrik,
+		// Begin Scandinavian names
+		Henrik, 
+		Alexander,
+		Aksel, 
+		Alarik, 
+		Albert, 
+		Algot, 
+		Alicia, 
+		Alvis, 
+		Amalia, 
+		Amma, 
+		Amund, 
+		Anders, 
+		Andor, 
+		Anker,
+		Annette, 
+		Anneliese, 
+		Anfrid, 
+		Arna, 
+		Arnbjorn, 
+		Arne, 
+		Asa, 
+		Astrid, 
+		Balder, 
+		Barbro, 
+		Barend, 
+		Beatrix, 
+		Benedikt, 
+		Bernt, 
+		Bente, 
+		Bertil, 
+		Birgit, 
+		Bo, 
+		Bjorn, 
+		Broder, 
+		Carl, 
+		Carina, 
+		Carole, 
+		Caroline, 
+		Caspar, 
+		Cecilia, 
+		Celia, 
+		Charlotta, 
+		Christa, 
+		Claus, 
+		Cornelia, 
+		Dag, 
+		Dagmar, 
+		Dagna, 
+		Dania, 
+		Diedreik, 
+		Disa, 
+		Dorothea, 
+		Ebba, 
+		Edda, 
+		Edith, 
+		Yvonne, 
+		Edmond, 
 		Holly,
 		Fred,
 		Frank,
@@ -79,13 +142,46 @@ public class StoryMaker {
 		Burt
 	}
 	private enum Locations {
-		Home,
 		Hawaii,
 		SanFrancisco,
 		London,
 		NewYork,
 		Japan,
-		Iceland
+		Iceland,
+		Kaimuki,
+		Moiliili,
+		Manoa,
+		Haleiwa,
+		NorthShore,
+		Kahala,
+		AlaMoana,
+		TheBar,
+		TheBathroom,
+		TheKitchen,
+		TheGarage,
+		TheStudio,
+		TheBakery,
+		Zippys,
+		HataRestaurant,
+		Gyukaku,
+		Waianae,
+		Wahiwa,
+		Waikiki,
+		NiuValley,
+		Palolo,
+		Jail,
+		School,
+		TheSushiBar,
+		GenkiSushi,
+		TheGlassBlowingStudio,
+		TheDoctorsOffice,
+		TheMajorsOffice,
+		ThePrincipalsOffice,
+		DeepUnderWater,
+		UpInTheAir,
+		TheDumpster,
+		BehindTheSevenEleven,
+		TheBottomOfThePool
 	}
 	private enum PlotLines {
 		ManInHole,
@@ -133,7 +229,27 @@ public class StoryMaker {
 		Knife,
 		Stool,
 		Computer,
-		Book
+		Book,
+		Bible,
+		Hook,
+		Bottle,
+		Keyboard,
+		Stapler,
+		Headphones,
+		Club,
+		WaterBottle,
+		CanOfMace,
+		Mouse,
+		Pen,
+		Brain,
+		TrashBag,
+		Pistol,
+		CanOfSprayPaint,
+		FeatherDuster,
+		CanOfTomatoSoup,
+		Hammer,
+		Chisel,
+		PickAxe
 	}
 
 }
@@ -141,4 +257,9 @@ public class StoryMaker {
 /*
  * TODOS:
  * Specify genders for Characters to write out correct pronouns.
+ * Determine how to link concepts of actions with subjects.
+ * Enumerate verbs.
+ * Enumerate nouns.
+ * Enumerate adjectives.
+ * Enumerate adverbs.
  */
