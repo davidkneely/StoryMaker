@@ -87,9 +87,9 @@ public class StoryMaker {
   /**
    * Capitalizes first letter of a word.
    * @param inputString The word to be capitalized.
-   * @return
+   * @return The string with a capital letter.
    */
-  private static String capitalizeFirstLetter(String inputString){
+  private static String capitalizeFirstLetter(String inputString) {
     inputString = inputString.substring(0, 1).toUpperCase() + inputString.substring(1);
     return inputString;
   }
@@ -206,7 +206,7 @@ public class StoryMaker {
 
 /*
  * TODOS:
- * Chain output of story to grammer check in Microsoft Word to fix any tense problems?
+ * Chain output of story to grammar check in Microsoft Word to fix any tense problems?
  * Research how to list out compound words as entries.
  * Specify genders for Characters to write out correct pronouns.
  * Determine how to link concepts of actions with subjects.
